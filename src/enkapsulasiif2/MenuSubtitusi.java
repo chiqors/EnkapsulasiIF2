@@ -296,7 +296,7 @@ public class MenuSubtitusi extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         new MenuUtama().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnProses2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProses2ActionPerformed

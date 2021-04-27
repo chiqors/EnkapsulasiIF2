@@ -5,6 +5,8 @@
  */
 package enkapsulasiif2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author bandi
@@ -17,6 +19,49 @@ public class MenuPolyalphabetical extends javax.swing.JFrame {
     public MenuPolyalphabetical() {
         initComponents();
     }
+    
+    public static String encrypt(final String message, final String key) {
+
+    String result = "";
+
+    for (int i = 0, j = 0; i < message.length(); i++) {
+      char c = message.charAt(i);
+      if (Character.isLetter(c)) {
+        if (Character.isUpperCase(c)) {
+          result += (char) ((c + key.toUpperCase().charAt(j) - 2 * 'A') % 26 + 'A');
+
+        } else {
+          result += (char) ((c + key.toLowerCase().charAt(j) - 2 * 'a') % 26 + 'a');
+        }
+      } else {
+        result += c;
+      }
+      j = ++j % key.length();
+    }
+    return result;
+  }
+
+  public static String decrypt(final String message, final String key) {
+    String result = "";
+
+    for (int i = 0, j = 0; i < message.length(); i++) {
+
+      char c = message.charAt(i);
+      if (Character.isLetter(c)) {
+        if (Character.isUpperCase(c)) {
+          result += ((char) ('Z' - (25 - (c - key.toUpperCase().charAt(j))) % 26));
+
+        } else {
+          result += ((char) ('z' - (25 - (c - key.toLowerCase().charAt(j))) % 26));
+        }
+      } else {
+        result += c;
+      }
+
+      j = ++j % key.length();
+    }
+    return result;
+  }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,6 +118,11 @@ public class MenuPolyalphabetical extends javax.swing.JFrame {
         jLabel7.setText("Kunci 1");
 
         btnProses2.setText("Proses");
+        btnProses2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProses2ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Plain Teks");
 
@@ -203,7 +253,29 @@ public class MenuPolyalphabetical extends javax.swing.JFrame {
 
     private void btnProses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProses1ActionPerformed
         // TODO add your handling code here:
+        String plain = txtPlain1.getText();
+        String key = txtKunci1.getText();
+        
+        ArrayList<String> keys = new ArrayList<>();
+        keys.add(key);
+
+        CipherPolyalphabetic poly = new CipherPolyalphabetic(keys);
+        String hasil = poly.encrypt(plain);
+        txtChiper1.setText(hasil);
     }//GEN-LAST:event_btnProses1ActionPerformed
+
+    private void btnProses2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProses2ActionPerformed
+        // TODO add your handling code here:
+        String cipher = txtChiper2.getText();
+        String key = txtKunci2.getText();
+        
+        ArrayList<String> keys = new ArrayList<>();
+        keys.add(key);
+
+        CipherPolyalphabetic poly = new CipherPolyalphabetic(keys);
+        String hasil = poly.decrypt(cipher);
+        txtPlain2.setText(hasil);
+    }//GEN-LAST:event_btnProses2ActionPerformed
 
     /**
      * @param args the command line arguments

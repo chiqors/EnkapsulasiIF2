@@ -5,17 +5,60 @@
  */
 package enkapsulasiif2;
 
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author bandi
  */
 public class MenuPolyalphabeticalDinamis2 extends javax.swing.JFrame {
 
+    private JLabel[] lblKeysEnc, lblKeysDec; //array of JLabels
+    private JTextField[] inpKeysEnc, inpKeysDec; //array of JTextFields
+    private int count;
+    private int empty_count = 0;
+    
+    public void setKeyField(int count){
+        lblKeysEnc = new JLabel[11];
+        inpKeysEnc = new JTextField[11];
+        lblKeysDec = new JLabel[11];
+        inpKeysDec = new JTextField[11];
+        
+        for(int i = 1; i <= count; i++){
+            lblKeysEnc[i] = new JLabel();
+            lblKeysEnc[i].setText("Kunci "+i);
+            
+            lblKeysDec[i] = new JLabel();
+            lblKeysDec[i].setText("Kunci "+i);
+            
+            inpKeysEnc[i] = new JTextField(10);
+            inpKeysDec[i] = new JTextField(10);
+            
+            panelEncrypt.setLayout(new GridLayout(0,2, -40, 10));
+            panelEncrypt.add(lblKeysEnc[i]);
+            panelEncrypt.add(inpKeysEnc[i]);
+            panelEncrypt.revalidate();
+            panelEncrypt.repaint();
+            
+            panelDecrypt.setLayout(new GridLayout(0,2, -40, 10));
+            panelDecrypt.add(lblKeysDec[i]);
+            panelDecrypt.add(inpKeysDec[i]);
+            panelDecrypt.revalidate();
+            panelDecrypt.repaint();
+        }
+    }
+    
     /**
      * Creates new form MenuPolyalphabeticalDinamis2
      */
-    public MenuPolyalphabeticalDinamis2() {
+    public MenuPolyalphabeticalDinamis2(int count) {
         initComponents();
+        setKeyField(count);
+        this.count = count;
     }
 
     /**
@@ -29,100 +72,214 @@ public class MenuPolyalphabeticalDinamis2 extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtPlain1 = new javax.swing.JTextField();
+        panelEncrypt = new javax.swing.JPanel();
+        btnProses1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        txtChiper1 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtChiper2 = new javax.swing.JTextField();
+        panelDecrypt = new javax.swing.JPanel();
+        btnProses2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        txtPlain2 = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Enkripsi Teknik Polyalphabetical");
+        jLabel1.setText("Enkripsi Teknik Polyalphabetical (Dinamis)");
 
         jLabel2.setText("Plain Teks");
 
-        jLabel3.setText("jLabel3");
+        panelEncrypt.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel4.setText("Dekripsi Teknik Polyalphabetical");
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 8, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelEncryptLayout = new javax.swing.GroupLayout(panelEncrypt);
+        panelEncrypt.setLayout(panelEncryptLayout);
+        panelEncryptLayout.setHorizontalGroup(
+            panelEncryptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+        panelEncryptLayout.setVerticalGroup(
+            panelEncryptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 37, Short.MAX_VALUE)
+        );
 
-        jLabel5.setText("Plain Teks");
+        btnProses1.setText("Proses");
+        btnProses1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProses1ActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setText("jLabel6");
+        jLabel3.setText("Chiper Teks");
+
+        jLabel4.setText("Dekripsi Teknik Polyalphabetical (Dinamis)");
+
+        jLabel5.setText("Chiper Teks");
+
+        panelDecrypt.setBackground(new java.awt.Color(204, 204, 204));
+        panelDecrypt.setPreferredSize(new java.awt.Dimension(0, 37));
+
+        javax.swing.GroupLayout panelDecryptLayout = new javax.swing.GroupLayout(panelDecrypt);
+        panelDecrypt.setLayout(panelDecryptLayout);
+        panelDecryptLayout.setHorizontalGroup(
+            panelDecryptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelDecryptLayout.setVerticalGroup(
+            panelDecryptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 37, Short.MAX_VALUE)
+        );
+
+        btnProses2.setText("Proses");
+        btnProses2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProses2ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Plain Teks");
+
+        btnBack.setText("<<");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(53, 53, 53)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(53, 53, 53)
+                                    .addComponent(txtPlain1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(panelEncrypt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtChiper1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnProses1)))
+                        .addGap(78, 78, 78))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(69, 69, 69))
+                        .addComponent(jLabel1)
+                        .addGap(99, 99, 99))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 34, Short.MAX_VALUE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(panelDecrypt, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(41, 41, 41)
+                                    .addComponent(txtChiper2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnProses2)
+                            .addComponent(txtPlain2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnBack))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPlain1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelEncrypt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProses1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtChiper1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtChiper2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelDecrypt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnProses2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtPlain2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnProses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProses1ActionPerformed
+        // TODO add your handling code here:
+        String plain = txtPlain1.getText();
+        
+        ArrayList<String> keys = new ArrayList<>();
+        for(int i = 1; i <= count; i++){
+            // set kunci
+            keys.add(inpKeysEnc[i].getText());
+        }
+
+        CipherPolyalphabetic poly = new CipherPolyalphabetic(keys);
+        String cipherText = poly.encrypt(plain);
+
+        txtChiper1.setText(cipherText);
+    }//GEN-LAST:event_btnProses1ActionPerformed
+
+    private void btnProses2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProses2ActionPerformed
+        // TODO add your handling code here:
+        String chiper = txtChiper2.getText();
+        
+        ArrayList<String> keys = new ArrayList<>();
+        for(int i = 1; i <= count; i++){
+            // set kunci
+            keys.add(inpKeysDec[i].getText());
+        }
+
+        CipherPolyalphabetic poly = new CipherPolyalphabetic(keys);
+        String plainText = poly.decrypt(chiper);
+
+        // set cipher text field enkripsi
+        txtPlain2.setText(plainText);
+    }//GEN-LAST:event_btnProses2ActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new MenuPolyalphabeticalDinamis().setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,20 +311,27 @@ public class MenuPolyalphabeticalDinamis2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPolyalphabeticalDinamis2().setVisible(true);
+                new MenuPolyalphabeticalDinamis2(0).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnProses1;
+    private javax.swing.JButton btnProses2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel panelDecrypt;
+    private javax.swing.JPanel panelEncrypt;
+    private javax.swing.JTextField txtChiper1;
+    private javax.swing.JTextField txtChiper2;
+    private javax.swing.JTextField txtPlain1;
+    private javax.swing.JTextField txtPlain2;
     // End of variables declaration//GEN-END:variables
 }

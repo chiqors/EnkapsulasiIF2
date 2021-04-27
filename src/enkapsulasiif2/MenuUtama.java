@@ -118,19 +118,19 @@ public class MenuUtama extends javax.swing.JFrame {
     private void btnCaesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaesarActionPerformed
         // TODO add your handling code here:
         new MenuSubtitusi().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnCaesarActionPerformed
 
     private void btnPolyalphabeticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPolyalphabeticalActionPerformed
         // TODO add your handling code here:
         new MenuPolyalphabetical().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnPolyalphabeticalActionPerformed
 
     private void btnPolyalphabeticalDinamisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPolyalphabeticalDinamisActionPerformed
         // TODO add your handling code here:
         new MenuPolyalphabeticalDinamis().setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnPolyalphabeticalDinamisActionPerformed
 
     /**

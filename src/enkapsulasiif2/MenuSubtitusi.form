@@ -69,10 +69,8 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtChiper2" pref="221" max="32767" attributes="0"/>
                           <Component id="txtPlain2" alignment="0" max="32767" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtKunci2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnProses2" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="txtKunci2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnProses2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
